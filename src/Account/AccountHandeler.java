@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class AccountHandeler {
     ArrayList<AcccountClass> accountsList = new ArrayList<>();
-
+    
     // Add Accounts
     public boolean addAccount(int accountNumber, String accountName, float accountBalance) {
         AcccountClass account = new AcccountClass(accountNumber, accountName, accountBalance);

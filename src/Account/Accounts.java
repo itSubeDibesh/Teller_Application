@@ -28,7 +28,7 @@ public class Accounts {
             switch (condition) {
                 case 0:
                     System.out.println("\n#######################################################");
-                    System.out.println("Exiting: Catch you Later Aligator!!");
+                    System.out.println("Exiting: Account Operation!!");
                     System.out.println("#######################################################\n");
                     break;
                 case 1:

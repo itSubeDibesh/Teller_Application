@@ -1,10 +1,9 @@
-import Account.Accounts;
+import Users.Users;
 
 public class MainView {
     public static void main(String[] args) throws Exception {
-        // Instiantiate Account
-        Accounts account = new Accounts();
-        account.initialize();
+        Users user = new Users();
+        user.initialize();
     }
 
 }
