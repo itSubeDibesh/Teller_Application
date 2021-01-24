@@ -1,9 +1,9 @@
-import Users.Users;
+import Views.ConsoleView;
 
 public class MainView {
     public static void main(String[] args) throws Exception {
-        Users user = new Users();
-        user.initialize();
+       ConsoleView view = new ConsoleView();
+       view.initialize();
     }
 
 }

@@ -3,7 +3,7 @@ package Account;
 import java.util.ArrayList;
 
 public class AccountHandeler {
-    ArrayList<AcccountClass> accountsList = new ArrayList<>();
+    public ArrayList<AcccountClass> accountsList = new ArrayList<>();
     
     // Add Accounts
     public boolean addAccount(int accountNumber, String accountName, float accountBalance) {
@@ -93,5 +93,14 @@ public class AccountHandeler {
     // Returns Account List
     public ArrayList<AcccountClass> ListAccounts() {
         return accountsList;
+    }
+
+     // Prints Message Within Lines
+     public void printInLine(String message) {
+        if (message.length() != 0) {
+            System.out.println("\n#######################################################");
+            System.out.println(message);
+            System.out.println("#######################################################\n");
+        }
     }
 }
