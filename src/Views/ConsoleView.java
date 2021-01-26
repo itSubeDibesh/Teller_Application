@@ -18,27 +18,25 @@ public class ConsoleView {
             System.out.println("#######################################################");
             System.out.println("\tWelcome To Teller Application!!");
             System.out.println("#######################################################");
-            System.out.println("0) Exit");
-            System.out.println("1) Add Account");
-            System.out.println("2) Check Amount");
-            System.out.println("3) Deposite Amount");
-            System.out.println("4) Withdraw Amount");
-            System.out.println("5) Transfure Amount A to B");
-            System.out.println("6) Delete Account");
-            System.out.println("7) All Accounts");
+            System.out.println("\t0) Exit");
+            System.out.println("\t1) Add Account");
+            System.out.println("\t2) Check Amount");
+            System.out.println("\t3) Deposite Amount");
+            System.out.println("\t4) Withdraw Amount");
+            System.out.println("\t5) Transfure Amount A to B");
+            System.out.println("\t6) Delete Account");
+            System.out.println("\t7) All Accounts");
             System.out.println("#######################################################");
-            System.out.println("8) Add User");
-            System.out.println("9) Delete User");
-            System.out.println("10) User list");
+            System.out.println("\t8) Add User");
+            System.out.println("\t9) Delete User");
+            System.out.println("\t10) User list");
             System.out.println("#######################################################");
             System.out.println("\tEnter Appropriate Choice:");
             condition = input.nextInt();
             System.out.println("#######################################################");
             switch (condition) {
                 case 0:
-                    System.out.println("\n#######################################################");
-                    System.out.println("\tExiting: Account Operation!!");
-                    System.out.println("#######################################################\n");
+                    printInLine("\tExiting: Account Operation!!");
                     break;
                 case 1:
                     action.addAccountView();
@@ -80,11 +78,9 @@ public class ConsoleView {
     public void initialize() {
         int condition;
         do {
-            System.out.println("#######################################################");
-            System.out.println("\tWelcome To Teller Application!!");
-            System.out.println("#######################################################");
-            System.out.println("0) Exit");
-            System.out.println("1) Login");
+            printInLine("\tWelcome To Teller Application!!");
+            System.out.println("\t0) Exit");
+            System.out.println("\t1) Login");
             System.out.println("#######################################################");
             System.out.println("\tEnter Appropriate Choice:");
             condition = input.nextInt();
@@ -114,7 +110,7 @@ public class ConsoleView {
         if (message.length() != 0) {
             System.out.println("\n#######################################################");
             System.out.println(message);
-            System.out.println("#######################################################\n");
+            System.out.println("#######################################################");
         }
     }
 }

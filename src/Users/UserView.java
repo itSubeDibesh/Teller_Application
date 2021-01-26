@@ -12,30 +12,34 @@ public class UserView {
 
     // Returns Login true or false
     public boolean loginView() {
-        System.out.println("Enter User Name:");
+        System.out.println("Enter user name:");
         String userName = input.next();
-        System.out.println("Enter Password");
+        System.out.println("Enter password");
         String passWord = input.next();
         return users.login(userName, passWord);
     }
 
     // Adds User
     public void addUserView() {
-        System.out.println("Enter New User Name:");
-        String userName = input.next();
-        System.out.println("Enter Password:");
-        String passWord = input.next();
-        System.out.println("Retype Password:");
-        String repassWord = input.next();
-        if (passWord.equals(repassWord)) {
-            // Check if User Added
-            if (users.addUser(userName, passWord))
-                users.printInLine("\tUser Added Successfully");
-            else
-                users.printInLine("\tUser Already Exists");
-        } else {
-            users.printInLine("\tPassword Not Match, Please tryagain later1");
-        }
+        users.printInLine("\tLogin again to add user");
+        if (loginView()) {
+            System.out.println("Enter new user name:");
+            String userName = input.next();
+            System.out.println("Enter password:");
+            String passWord = input.next();
+            System.out.println("Retype password:");
+            String repassWord = input.next();
+            if (passWord.equals(repassWord)) {
+                // Check if User Added
+                if (users.addUser(userName, passWord))
+                    users.printInLine("\tUser Added Successfully");
+                else
+                    users.printInLine("\tUser Already Exists");
+            } else {
+                users.printInLine("\tPassword Not Match, Please tryagain later!");
+            }
+        } else
+            users.printInLine("\tInvalid login credentials, Access denied");
     }
 
     // Display All User
@@ -53,18 +57,22 @@ public class UserView {
             System.out.println("#######################################################\n");
         } else {
             // User Dont Exist
-            users.printInLine("User not found in storage.");
+            users.printInLine("\tUser not found in storage.");
         }
     }
 
     // Deletes Selected User
     public void deleteUser() {
-        System.out.println("Enter User Name:");
-        String userName = input.next();
-        if (users.deleteUser(userName))
-            users.printInLine("\tUser Deleted Successfully.");
-        else
-            users.printInLine("\tUser not found in storage.");
+        users.printInLine("\tLogin again to delete user");
+        if (loginView()) {
+            System.out.println("Enter user name to delete:");
+            String userName = input.next();
+            if (users.deleteUser(userName))
+                users.printInLine("\tUser deleted successfully.");
+            else
+                users.printInLine("\tUser not found in storage.");
+        } else
+            users.printInLine("\tInvalid login credentials, Access denied");
     }
 
 }
