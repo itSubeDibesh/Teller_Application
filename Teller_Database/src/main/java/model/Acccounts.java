@@ -1,15 +1,15 @@
-package Account;
+package model;
 /**
  * Store and Access Account Details From Here
  */
-public class AcccountClass {
-    // #region VAriable Declaration
+public class Acccounts {
+    // #region Variable Declaration
     private int accountNumber;
     private String accountName;
     private float accountBalance;
     // #endregion
 
-    public AcccountClass(int accountNumber, String accountName, float accountBalance) {
+    public Acccounts(int accountNumber, String accountName, float accountBalance) {
         this.accountNumber = accountNumber;
         this.accountName = accountName;
         this.accountBalance = accountBalance;
