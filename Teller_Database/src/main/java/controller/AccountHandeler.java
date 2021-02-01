@@ -1,12 +1,16 @@
 package controller;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import model.Acccounts;
 
 public class AccountHandeler {
+
     public ArrayList<Acccounts> accountsList = new ArrayList<>();
-    
+    DBConnection db = new DBConnection();
+
     // Add Accounts
     public boolean addAccount(int accountNumber, String accountName, float accountBalance) {
         Acccounts account = new Acccounts(accountNumber, accountName, accountBalance);
@@ -19,10 +23,15 @@ public class AccountHandeler {
 
     // Find Accounts
     public Acccounts findAccount(int accountNumber) {
-        // Foreach Loop to Check if th eaccount number exists in array list
-        for (Acccounts account : accountsList) {
-            if (account.getAccountNumber() == accountNumber)
-                return account;
+        String sql = "SELECT * FROM tellerdb.account WHERE accountNumber = '" + accountNumber + "';";
+        ResultSet rs = db.select(sql);
+        try {
+            while (rs.next()) {
+                Acccounts ac = new Acccounts(rs.getInt(1), rs.getString(2), rs.getFloat(3));
+                return ac;
+            }
+        } catch (SQLException ex) {
+            return null;
         }
         return null;
     }
@@ -31,8 +40,9 @@ public class AccountHandeler {
     public float checkAmount(int accountNumber) {
         // Store the search to account to avoide double search
         Acccounts account = findAccount(accountNumber);
-        if (account != null)
+        if (account != null) {
             return account.getAccountBalance();
+        }
         return 0;
     }
 
@@ -97,8 +107,8 @@ public class AccountHandeler {
         return accountsList;
     }
 
-     // Prints Message Within Lines
-     public void printInLine(String message) {
+    // Prints Message Within Lines
+    public void printInLine(String message) {
         if (message.length() != 0) {
             System.out.println("\n#######################################################");
             System.out.println(message);
