@@ -15,15 +15,15 @@ public class AccountHandeler {
     public boolean addAccount(int accountNumber, String accountName, float accountBalance) {
         Acccounts account = new Acccounts(accountNumber, accountName, accountBalance);
         if (findAccount(accountNumber) == null) {
-            this.accountsList.add(account);
-            return true;
+            String sql = "INSERT INTO `tellerdb`.`account` (`accountNumber`,`accountName`,`accountBalance`) VALUES (" + accountNumber + ",'" + accountName + "'," + accountBalance + ");";
+            return db.iud(sql);
         }
         return false;
     }
 
     // Find Accounts
     public Acccounts findAccount(int accountNumber) {
-        String sql = "SELECT * FROM tellerdb.account WHERE accountNumber = '" + accountNumber + "';";
+        String sql = "SELECT * FROM `tellerdb`.`account` WHERE `account`.`accountNumber` = " + accountNumber + ";";
         ResultSet rs = db.select(sql);
         try {
             while (rs.next()) {
