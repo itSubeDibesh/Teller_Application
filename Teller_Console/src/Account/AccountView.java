@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class AccountView {
-     // Instiantiating Accounts Handler to invoke its methords
-     public AccountHandeler accounts = new AccountHandeler();
+    // Instiantiating Accounts Handler to invoke its methords
+    public AccountHandeler accounts = new AccountHandeler();
 
     // Defining Input Scanner
     Scanner input = new Scanner(System.in);
@@ -33,7 +33,8 @@ public class AccountView {
         float amount = accounts.checkAmount(accountNumber);
         if (account != null) {
             if (amount != 0)
-                accounts.printInLine("Account Number " + account.getAccountNumber() + " has balance of Rs: " + amount + "/-");
+                accounts.printInLine(
+                        "Account Number " + account.getAccountNumber() + " has balance of Rs: " + amount + "/-");
             else
                 accounts.printInLine("Account Number " + account.getAccountNumber() + " has no baance left.");
         } else
@@ -97,15 +98,18 @@ public class AccountView {
         AcccountClass account_B = accounts.findAccount(receiverAccount);
         int transfur = accounts.transfureAmountA_to_B(senderAccount, receiverAccount, amount);
         if (transfur == 1) {
-            accounts.printInLine("New Withdraw Request of Rs: " + amount + "/- on Account number " + account_A.getAccountNumber()
-                    + ".\n" + "New Deposite Request of Rs: " + amount + "/- on Account number "
-                    + account_B.getAccountNumber() + ".\n" + "Sender Account Number " + account_A.getAccountNumber()
-                    + " has new balance of Rs: " + account_A.getAccountBalance() + "/-\n" + "Receiver Account Number "
-                    + account_B.getAccountNumber() + " has new balance of Rs: " + account_B.getAccountBalance() + "/-");
+            accounts.printInLine("New Withdraw Request of Rs: " + amount + "/- on Account number "
+                    + account_A.getAccountNumber() + ".\n" + "New Deposite Request of Rs: " + amount
+                    + "/- on Account number " + account_B.getAccountNumber() + ".\n" + "Sender Account Number "
+                    + account_A.getAccountNumber() + " has new balance of Rs: "
+                    + (account_A.getAccountBalance() - amount) + "/-\n" + "Receiver Account Number "
+                    + account_B.getAccountNumber() + " has new balance of Rs: "
+                    + (account_B.getAccountBalance() + amount) + "/-");
         } else if (transfur == 0) {
             // Balance insufficent
-            accounts.printInLine("Sender Account Number " + account_A.getAccountNumber() + " has insufficent balance(Rs "
-                    + account_A.getAccountBalance() + "/-) to withdraw(Rs " + amount + "/-).");
+            accounts.printInLine(
+                    "Sender Account Number " + account_A.getAccountNumber() + " has insufficent balance(Rs "
+                            + account_A.getAccountBalance() + "/-) to withdraw(Rs " + amount + "/-).");
         } else {
             // Accound Dont Exists
             accounts.printInLine("\tEnter Valid Account Number.");

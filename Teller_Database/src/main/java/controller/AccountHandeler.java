@@ -13,7 +13,6 @@ public class AccountHandeler {
 
     // Add Accounts
     public boolean addAccount(int accountNumber, String accountName, float accountBalance) {
-        Acccounts account = new Acccounts(accountNumber, accountName, accountBalance);
         if (findAccount(accountNumber) == null) {
             String sql = "INSERT INTO `tellerdb`.`account` (`accountNumber`,`accountName`,`accountBalance`) VALUES (" + accountNumber + ",'" + accountName + "'," + accountBalance + ");";
             return db.iud(sql);
@@ -52,7 +51,11 @@ public class AccountHandeler {
         Acccounts account = findAccount(accountNumber);
         if (account != null) {
             account.setAccountBalance(account.getAccountBalance() + amount);
-            return account.getAccountBalance();
+            String sql = "UPDATE `tellerdb`.`account` SET `accountBalance` = '" + account.getAccountBalance() + "' WHERE `account`.`accountNumber` = " + accountNumber + ";";
+            if (db.iud(sql)) {
+                return account.getAccountBalance();
+            }
+            return 0;
         }
         return 0;
     }
@@ -66,7 +69,11 @@ public class AccountHandeler {
             if (account.getAccountBalance() >= amount) {
                 // Withdraw
                 account.setAccountBalance(account.getAccountBalance() - amount);
-                return account.getAccountBalance();
+                String sql = "UPDATE `tellerdb`.`account` SET `accountBalance` = '" + account.getAccountBalance() + "' WHERE `account`.`accountNumber` = " + accountNumber + ";";
+                if (db.iud(sql)) {
+                    return account.getAccountBalance();
+                }
+                return 0;
             }
             return 0;
         }
@@ -96,8 +103,8 @@ public class AccountHandeler {
         // Store the search to account to avoide double search
         Acccounts account = findAccount(accountNumber);
         if (account != null) {
-            this.accountsList.remove(account);
-            return true;
+             String sql = "DELETE `tellerdb`.`account` WHERE `account`.`accountNumber` = " + accountNumber + ";";
+            return db.iud(sql);
         }
         return false;
     }
