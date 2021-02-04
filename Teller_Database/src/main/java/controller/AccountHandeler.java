@@ -24,9 +24,13 @@ public class AccountHandeler {
         String sql = "SELECT * FROM `tellerdb`.`account` WHERE `account`.`accountNumber` = " + accountNumber + ";";
         ResultSet rs = db.select(sql);
         try {
-            while (rs.next()) {
-                Acccounts ac = new Acccounts(rs.getInt(1), rs.getString(2), rs.getFloat(3));
-                return ac;
+            if (rs != null) {
+                while (rs.next()) {
+                    Acccounts ac = new Acccounts(rs.getInt(1), rs.getString(2), rs.getFloat(3));
+                    return ac;
+                }
+            } else {
+                return null;
             }
         } catch (SQLException ex) {
             return null;
@@ -103,7 +107,6 @@ public class AccountHandeler {
         Acccounts account = findAccount(accountNumber);
         if (account != null) {
             String sql = "DELETE FROM `tellerdb`.`account` WHERE `account`.`accountNumber` = '" + accountNumber + "';";
-            System.out.println(sql);
             return db.iud(sql);
         }
         return false;

@@ -13,7 +13,7 @@ public class MainView {
     }
 
     public static void initializeAccount() {
-        int condition;
+        String condition;
         // Loops Unitll The condition is not 0
         do {
             System.out.println("#######################################################");
@@ -33,64 +33,64 @@ public class MainView {
             System.out.println("\t10) User list");
             System.out.println("#######################################################");
             System.out.println("\tEnter Appropriate Choice:");
-            condition = input.nextInt();
+            condition = input.next();
             System.out.println("#######################################################");
             switch (condition) {
-                case 0:
+                case "0":
                     printInLine("\tExiting: Account Operation!!");
                     break;
-                case 1:
+                case "1":
                     action.addAccountView();
                     break;
-                case 2:
+                case "2":
                     action.checkAmountView();
                     break;
-                case 3:
+                case "3":
                     action.depositAmountView();
                     break;
-                case 4:
+                case "4":
                     action.withdrawAmountView();
                     break;
-                case 5:
+                case "5":
                     action.transfurAmountView();
                     break;
-                case 6:
+                case "6":
                     action.deleteAccount();
                     break;
-                case 7:
+                case "7":
                     action.allAccountsView();
                     break;
-                case 8:
+                case "8":
                     users.addUserView();
                     break;
-                case 9:
+                case "9":
                     users.deleteUser();
                     break;
-                case 10:
+                case "10":
                     users.allUsersView();
                     break;
                 default:
                     System.out.println("\tEnter Appropriate Choice!!");
                     System.out.println("#######################################################");
             }
-        } while (condition != 0);
+        } while (!condition.equals("0"));
     }
 
     public static void initialize() {
-        int condition;
+        String condition;
         do {
             printInLine("\tWelcome To Teller Application!!");
             System.out.println("\t0) Exit");
             System.out.println("\t1) Login");
             System.out.println("#######################################################");
             System.out.println("\tEnter Appropriate Choice:");
-            condition = input.nextInt();
+            condition = input.next();
             System.out.println("#######################################################");
             switch (condition) {
-                case 0:
+                case "0":
                     printInLine("\tExiting: Catch you Later Aligator!!");
                     break;
-                case 1:
+                case "1":
                     if (users.loginView()) {
                         printInLine("\tLogin Successfull!!");
                         initializeAccount();
@@ -103,7 +103,7 @@ public class MainView {
                     System.out.println("#######################################################");
             }
 
-        } while (condition != 0);
+        } while (!condition.equals("0"));
     }
 
     // Prints Message Within Lines

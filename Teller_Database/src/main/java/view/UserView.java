@@ -47,7 +47,7 @@ public class UserView {
 
     // Display All User
     public void allUsersView() {
-        ArrayList<Users> userList = users.userList;
+        ArrayList<Users> userList = users.ListUsers();
         int size = userList.size();
         if (size != 0) {
             // Users Exists

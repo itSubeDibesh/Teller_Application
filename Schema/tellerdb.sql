@@ -52,7 +52,10 @@ CREATE TABLE `user` (
 --
 -- Dumping events for database 'tellerdb'
 --
+ALTER TABLE `tellerdb`.`user` 
+CHANGE COLUMN `userId` `userId` INT NOT NULL AUTO_INCREMENT ;
 
+INSERT INTO `tellerdb`.`user` (`userName`, `passWord`) VALUES  ('admin', 'admin')
 --
 -- Dumping routines for database 'tellerdb'
 --
