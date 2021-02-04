@@ -8,8 +8,7 @@ import model.Acccounts;
 
 public class AccountHandeler {
 
-    public ArrayList<Acccounts> accountsList = new ArrayList<>();
-    DBConnection db = new DBConnection();
+    public DBConnection db = new DBConnection();
 
     // Add Accounts
     public boolean addAccount(int accountNumber, String accountName, float accountBalance) {
@@ -103,7 +102,8 @@ public class AccountHandeler {
         // Store the search to account to avoide double search
         Acccounts account = findAccount(accountNumber);
         if (account != null) {
-             String sql = "DELETE `tellerdb`.`account` WHERE `account`.`accountNumber` = " + accountNumber + ";";
+            String sql = "DELETE FROM `tellerdb`.`account` WHERE `account`.`accountNumber` = '" + accountNumber + "';";
+            System.out.println(sql);
             return db.iud(sql);
         }
         return false;
@@ -111,7 +111,20 @@ public class AccountHandeler {
 
     // Returns Account List
     public ArrayList<Acccounts> ListAccounts() {
-        return accountsList;
+//        return accountsList;
+        String sql = "SELECT * FROM `tellerdb`.`account`;";
+        ResultSet rs = db.select(sql);
+        ArrayList<Acccounts> list = new ArrayList<>();
+        try {
+            while (rs.next()) {
+                Acccounts accounts = new Acccounts(rs.getInt(1), rs.getString(2), rs.getFloat(3));
+                list.add(accounts);
+            }
+            System.out.println(list);
+            return list;
+        } catch (SQLException ex) {
+            return null;
+        }
     }
 
     // Prints Message Within Lines

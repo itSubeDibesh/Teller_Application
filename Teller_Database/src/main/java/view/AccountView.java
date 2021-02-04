@@ -123,7 +123,7 @@ public class AccountView {
 
     // Display All Account
     public void allAccountsView() {
-        ArrayList<Acccounts> accountList = accounts.accountsList;
+        ArrayList<Acccounts> accountList = accounts.ListAccounts();
         int size = accountList.size();
         if (size != 0) {
             // Accounts Exists
