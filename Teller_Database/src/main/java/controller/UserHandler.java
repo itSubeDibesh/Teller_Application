@@ -61,12 +61,12 @@ public class UserHandler {
         String sql = "SELECT `user`.`userName`,`user`.`passWord` FROM `tellerdb`.`user`;";
         ResultSet rs = db.select(sql);
         ArrayList<Users> list = new ArrayList<>();
+        list.clear();
         try {
             while (rs.next()) {
                 Users users = new Users(rs.getString(1), rs.getString(2));
                 list.add(users);
             }
-            System.out.println(list);
             return list;
         } catch (SQLException ex) {
             return null;

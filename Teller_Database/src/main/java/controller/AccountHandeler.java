@@ -118,12 +118,12 @@ public class AccountHandeler {
         String sql = "SELECT * FROM `tellerdb`.`account`;";
         ResultSet rs = db.select(sql);
         ArrayList<Acccounts> list = new ArrayList<>();
+        list.clear();
         try {
             while (rs.next()) {
                 Acccounts accounts = new Acccounts(rs.getInt(1), rs.getString(2), rs.getFloat(3));
                 list.add(accounts);
             }
-            System.out.println(list);
             return list;
         } catch (SQLException ex) {
             return null;
