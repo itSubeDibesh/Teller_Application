@@ -14,15 +14,14 @@ public class LoginCommand {
     private String userName;
     private String passWord;
 
-    public LoginCommand() {
-    }
-
-    
     public LoginCommand(String userName, String passWord) {
         this.userName = userName;
         this.passWord = passWord;
     }
 
+    public LoginCommand() {
+    }
+    
     public String getUserName() {
         return userName;
     }

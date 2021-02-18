@@ -20,8 +20,8 @@
                 <!-- Tabs Titles -->
                 <h3>Login Form</h3>
                <form:form method="POST" modelAttribute="command" action="loginProcess">
-                    <form:input id="username" class="fadeIn second" placeholder="USERNAME" path="userName"/>
-                    <form:password id="password" class="fadeIn third" placeholder="PASSWORD" path="passWord"/>
+                    <form:input id="userName" name="userName" class="fadeIn second" placeholder="USERNAME" path="userName"/>
+                    <form:password id="passWord" name="passWord" class="fadeIn third" placeholder="PASSWORD" path="passWord"/>
                     <form:button id="submit" class="fadeIn fourth" name="submit">LogIn</form:button>
                     
                 </form:form>

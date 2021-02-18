@@ -11,7 +11,9 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  *
@@ -24,11 +26,33 @@ public class UserController {
     UserDAO ud;
 
     @RequestMapping(value = {"/login"})
-
     public String loginForm(Model m, HttpSession session) {
         m.addAttribute("command", new LoginCommand());
         session.invalidate();
         return "login";
+    }
+
+    @RequestMapping(value = {"/loginProcess"}, method = RequestMethod.POST)
+    public String loginProcess(@ModelAttribute("command") LoginCommand lc, Model m, HttpSession session) {
+        System.out.println(lc.getUserName() + lc.getPassWord());
+        if (ud.login(lc.getUserName(), lc.getPassWord())) {
+            session.setAttribute("userName", lc.getUserName());
+            return "redirect:dashboard";
+        } else {
+            m.addAttribute("message", "Invalid Login");
+            return "login";
+        }
+    }
+
+    @RequestMapping(value = {"/dashboard"})
+    public String dash(Model m, HttpSession session) {
+        if (session.getAttribute("userName") != null) {
+            m.addAttribute("title", "Teller Application");
+            m.addAttribute("message", "Login Success");
+            return "dashboard";
+        } else {
+            return "redirect:login";
+        }
     }
 
 }
