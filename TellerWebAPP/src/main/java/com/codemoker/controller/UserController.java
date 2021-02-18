@@ -32,9 +32,14 @@ public class UserController {
         return "login";
     }
 
+    @RequestMapping(value = {"/logout"})
+    public String logout(Model m, HttpSession session) {
+        session.removeAttribute("userName");
+        return "redirect:login";
+    }
+
     @RequestMapping(value = {"/loginProcess"}, method = RequestMethod.POST)
     public String loginProcess(@ModelAttribute("command") LoginCommand lc, Model m, HttpSession session) {
-        System.out.println(lc.getUserName() + lc.getPassWord());
         if (ud.login(lc.getUserName(), lc.getPassWord())) {
             session.setAttribute("userName", lc.getUserName());
             return "redirect:dashboard";
