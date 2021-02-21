@@ -54,7 +54,7 @@
                 </a>
             </li>            
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">${sessionScope.uname}<b class="fa fa-angle-down"></b></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">${sessionScope.userName}<b class="fa fa-angle-down"></b></a>
                 <ul class="dropdown-menu">
 <!--                    <li><a href="#"><i class="fa fa-fw fa-user"></i> Edit Profile</a></li>
                     <li><a href="#"><i class="fa fa-fw fa-cog"></i> Change Password</a></li>
@@ -111,9 +111,9 @@
                             
                             
                             
-                                <form:input id="login" class="fadeIn second" placeholder="SOURCE ACCOUNT NUMBER" path="srcAccountNumber"/>
-                                <form:input id="login" class="fadeIn second" placeholder="TARGET ACCOUNT NUMBER" path="trgtAccountNumber"/>
-                                <form:input id="login" class="fadeIn second" placeholder="AMOUNT" path="balance"/>
+                                <form:input id="senderAccount" class="fadeIn second" placeholder="Sender ACCOUNT NUMBER" path="senderAccount"/>
+                                <form:input id="receiverAccount" class="fadeIn second" placeholder="Receiver ACCOUNT NUMBER" path="receiverAccount"/>
+                                <form:input id="amount" class="fadeIn second" placeholder="AMOUNT" path="amount"/>
                                 <form:button id="submit" class="fadeIn fourth" name="submit">Transfer</form:button>
                         </form:form>
                         <div id="formFooter">

@@ -54,7 +54,7 @@
                 </a>
             </li>            
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">${sessionScope.uname}<b class="fa fa-angle-down"></b></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">${sessionScope.userName}<b class="fa fa-angle-down"></b></a>
                 <ul class="dropdown-menu">
 <!--                    <li><a href="#"><i class="fa fa-fw fa-user"></i> Edit Profile</a></li>
                     <li><a href="#"><i class="fa fa-fw fa-cog"></i> Change Password</a></li>
@@ -107,8 +107,8 @@
                             
 
                         <form:form method="POST" modelAttribute="account" action="processwithdraw">
-                        <form:input id="login" class="fadeIn second" placeholder="ACCOUNT NUMBER" path="accountNumber"/>
-                        <form:input id="login" class="fadeIn second" placeholder="AMOUNT TO WITHDRAW" path="balance"/>
+                        <form:input id="accountNumber" class="fadeIn second" placeholder="ACCOUNT NUMBER" path="accountNumber"/>
+                        <form:input id="accountName" class="fadeIn second" placeholder="AMOUNT TO WITHDRAW" path="accountName"/>
                         <form:button id="submit" class="fadeIn fourth" name="submit">Withdraw</form:button>
                         </form:form>
                         <div id="formFooter">
