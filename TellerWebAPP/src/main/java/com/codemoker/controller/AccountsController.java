@@ -27,30 +27,24 @@ public class AccountsController {
 
     @RequestMapping("/createnewaccount")
     public String createAccount(Model m, HttpSession session) {
-        String userName = (String) session.getAttribute("userName");
-        if (userName != null) {
-            m.addAttribute("title", "Teller Application | Create Account");
+        if (session.getAttribute("userName") != null) {
             m.addAttribute("account", new AccountCommand());
             return "createnewaccount";
         } else {
-            m.addAttribute("message", "Invalid Login");
             return "redirect:logout";
         }
     }
 
     @RequestMapping(value = {"/processNewAccount"}, method = RequestMethod.POST)
     public String loginProcess(@ModelAttribute("account") AccountCommand uc, Model m, HttpSession session) {
-        String userName = (String) session.getAttribute("userName");
-        if (userName != null) {
+        if (session.getAttribute("userName") != null) {
             if (ad.addAccount(uc.getAccountNumber(), uc.getAccountName(), uc.getAccountBalance())) {
-                m.addAttribute("message", "Account Added Successfully");
-                return "redirect:dashboard";
+               session.setAttribute("message", "Account Added Successfully");
             } else {
-                m.addAttribute("message", "Invalid Account details");
-                return "redirect:dashboard";
+               session.setAttribute("message", "Account already exists");
             }
+            return "redirect:createnewaccount";
         } else {
-            m.addAttribute("message", "Invalid Login");
             return "redirect:logout";
         }
     }
