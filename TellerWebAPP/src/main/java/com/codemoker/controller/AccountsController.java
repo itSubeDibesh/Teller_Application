@@ -158,7 +158,7 @@ public class AccountsController {
         }
     }
     
-       @RequestMapping("/listallaccounts")
+     @RequestMapping("/listallaccounts")
     public String listAllAccounts(Model m, HttpSession session) {
         if (session.getAttribute("userName") != null) {
             m.addAttribute("aList", ad.ListAccounts());
