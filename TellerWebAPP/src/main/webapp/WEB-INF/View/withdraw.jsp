@@ -79,7 +79,7 @@
                     <a href="depositamount"><i class="fa fa-fw fa fa-question-circle"></i> Deposit</a>
                 </li>
                 <li>
-                    <a href="fundtransfer"><i class="fa fa-fw fa fa-question-circle"></i> Fund Transfer</a>
+                    <a href="fundtransfure"><i class="fa fa-fw fa fa-question-circle"></i> Fund Transfer</a>
                 </li>
                 <li>
                     <a href="listallaccounts"><i class="fa fa-fw fa fa-question-circle"></i> List All Accounts</a>
@@ -108,7 +108,7 @@
 
                         <form:form method="POST" modelAttribute="account" action="processwithdraw">
                         <form:input id="accountNumber" class="fadeIn second" placeholder="ACCOUNT NUMBER" path="accountNumber"/>
-                        <form:input id="accountName" class="fadeIn second" placeholder="AMOUNT TO WITHDRAW" path="accountName"/>
+                        <form:input id="accountBalance" class="fadeIn second" placeholder="AMOUNT TO WITHDRAW" path="accountBalance"/>
                         <form:button id="submit" class="fadeIn fourth" name="submit">Withdraw</form:button>
                         </form:form>
                         <div id="formFooter">

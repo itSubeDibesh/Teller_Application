@@ -79,7 +79,7 @@
                     <a href="depositamount"><i class="fa fa-fw fa fa-question-circle"></i> Deposit</a>
                 </li>
                 <li>
-                    <a href="fundtransfer"><i class="fa fa-fw fa fa-question-circle"></i> Fund Transfer</a>
+                    <a href="fundtransfure"><i class="fa fa-fw fa fa-question-circle"></i> Fund Transfer</a>
                 </li>
                 
                 <li>

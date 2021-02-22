@@ -6,6 +6,7 @@
 package com.codemoker.controller;
 
 import com.codemoker.command.AccountCommand;
+import com.codemoker.command.TransfureCommand;
 import com.codemoker.dao.AccountDAO;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,11 +74,39 @@ public class AccountsController {
         }
     }
 
-    @RequestMapping("/withdrawamount")
+    
+    @RequestMapping("/depositamount")
+    public String depositAmount(Model m, HttpSession session) {
+        if (session.getAttribute("userName") != null) {
+            m.addAttribute("account", new AccountCommand());
+            return "depositamount";
+        } else {
+            return "redirect:logout";
+        }
+    }
+
+    @RequestMapping(value = {"/processdeposit"}, method = RequestMethod.POST)
+    public String depositAmountProcess(@ModelAttribute("account") AccountCommand uc, Model m, HttpSession session) {
+        if (session.getAttribute("userName") != null) {
+            float withdraw = ad.depositeAmount(uc.getAccountNumber(), uc.getAccountBalance());
+            if (withdraw != 0) {
+                // Withdraw
+                session.setAttribute("message", "Amount Deposit Successfully");
+            } else {
+                // Balance insufficent
+                session.setAttribute("message", "Tryagain Later");
+            }
+            return "redirect:createnewaccount";
+        } else {
+            return "redirect:logout";
+        }
+    }
+    
+    @RequestMapping("/withdraw")
     public String withdrawAmount(Model m, HttpSession session) {
         if (session.getAttribute("userName") != null) {
             m.addAttribute("account", new AccountCommand());
-            return "withdrawamount";
+            return "withdraw";
         } else {
             return "redirect:logout";
         }
@@ -100,13 +129,43 @@ public class AccountsController {
         }
     }
 
-    @RequestMapping("/transferamount")
+    @RequestMapping("/fundtransfure")
     public String transfuremount(Model m, HttpSession session) {
         if (session.getAttribute("userName") != null) {
-            m.addAttribute("account", new AccountCommand());
-            return "transferamount";
+            m.addAttribute("fundtransferhelper", new TransfureCommand());
+            return "fundtransfer";
         } else {
             return "redirect:logout";
         }
     }
+
+    @RequestMapping(value = {"/processfundtransfer"}, method = RequestMethod.POST)
+    public String transfuremountProcess(@ModelAttribute("account") TransfureCommand tc, Model m, HttpSession session) {
+        if (session.getAttribute("userName") != null) {
+            int transfur = ad.transfureAmountA_to_B(tc.getSenderAccount(), tc.getReceiverAccount(), tc.getAmount());
+            if (transfur == 1) {
+                session.setAttribute("message", "Amount transfured Successfully");
+            } else if (transfur == 0) {
+                // Balance insufficent
+                session.setAttribute("message", "Sender has insufficent balance");
+            } else {
+                // Accound Dont Exists
+                session.setAttribute("message", "Enter Valid Account Number.");
+            }
+            return "redirect:createnewaccount";
+        } else {
+            return "redirect:logout";
+        }
+    }
+    
+       @RequestMapping("/listallaccounts")
+    public String listAllAccounts(Model m, HttpSession session) {
+        if (session.getAttribute("userName") != null) {
+            m.addAttribute("aList", ad.ListAccounts());
+            return "listallaccounts";
+        } else {
+            return "redirect:logout";
+        }
+    }
+
 }

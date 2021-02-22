@@ -1,12 +1,9 @@
-<%-- 
-    Document   : register
-    Created on : Sep 13, 2019, 4:21:59 AM
-    Author     : Primax
---%>
+<%@page import="java.util.Iterator"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.codemoker.domain.Acccounts"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
-        
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -23,7 +20,6 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <link href="${pageContext.request.contextPath}/resources/css/dashboard.css" rel="stylesheet">
     <script src="${pageContext.request.contextPath}/resources/js/dropdown.js"></script>
-    <link href="${pageContext.request.contextPath}/resources/css/mystyle.css" rel="stylesheet">
         
 
   </head>
@@ -44,7 +40,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href=#">
                 <img src="${pageContext.request.contextPath}/resources/images/banklogo.jpg" alt="LOGO"">
             </a>
         </div>
@@ -54,7 +50,7 @@
                 </a>
             </li>            
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">${sessionScope.userName}<b class="fa fa-angle-down"></b></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">${sessionScope.uname}<b class="fa fa-angle-down"></b></a>
                 <ul class="dropdown-menu">
 <!--                    <li><a href="#"><i class="fa fa-fw fa-user"></i> Edit Profile</a></li>
                     <li><a href="#"><i class="fa fa-fw fa-cog"></i> Change Password</a></li>
@@ -81,6 +77,7 @@
                 <li>
                     <a href="fundtransfure"><i class="fa fa-fw fa fa-question-circle"></i> Fund Transfer</a>
                 </li>
+                
                 <li>
                     <a href="listallaccounts"><i class="fa fa-fw fa fa-question-circle"></i> List All Accounts</a>
                 </li>
@@ -92,30 +89,36 @@
     <div id="page-wrapper">
         <div class="container-fluid">
             <!-- Page Heading -->
+            <div class="row">
+                List of All accounts in the system.
+            </div>
             <div class="row" id="main" >
-                <div class="col-sm-12 col-md-12 well" id="content">
-                        <div id="formContent">
-                    <!-- Tabs Titles -->
-
-                    <!-- Icon -->
-                        <div id="formHeader">
-<!--                            <img src="${pageContext.request.contextPath}/resources/images/logo.png" id="icon" alt="User Icon" />-->
-                            Enter account number of customer to delete account.
-                            
-                            
-                        </div>
-                            
-
-                        <form:form method="POST" modelAttribute="account" action="processdeleteaccount">
-                        <form:input id="accountNumber" class="fadeIn second" placeholder="ACCOUNT NUMBER" path="accountNumber"/>
-                        <form:button id="submit" class="fadeIn fourth" name="submit">Delete</form:button>
-                        </form:form>
-                        <div id="formFooter">
-                            ${message}
-                        </div>
+                <table class="table-striped table">
+                    <tr>
+                        <td>Account Number</td>
+                        <td>Account Name</td>
+                       
+                        <td>Balance</td>
                         
-                    </div>
-                </div>
+                    </tr>
+                    
+                <% ArrayList<Acccounts> accountList=(ArrayList<Acccounts>) request.getAttribute("aList");
+                    Iterator<Acccounts> iter = accountList.iterator();
+                    while(iter.hasNext()){
+                     Acccounts accnt = iter.next();
+                %>
+                     <tr>
+                        <td><%out.print(accnt.getAccountNumber());%></td>
+                        <td><%out.print(accnt.getAccountName());%></td>
+           
+                        <td><%out.print(accnt.getAccountBalance());%></td>
+                        
+                     </tr>
+                    <% 
+                    }
+            %>
+
+
             </div>
             <!-- /.row -->
         </div>
@@ -125,4 +128,3 @@
 </div><!-- /#wrapper -->
   </body>
 </html>
-           

@@ -69,11 +69,11 @@
                     <a href="depositamount"><i class="fa fa-fw fa-user-plus"></i>  Deposit Amount </a>
                 </li>
                 <li>
-                    <a href="withdrawamount"><i class="fa fa-fw fa fa-question-circle"></i> Withdraw Amount</a>
+                    <a href="withdraw"><i class="fa fa-fw fa fa-question-circle"></i> Withdraw Amount</a>
                 </li>
                 
                 <li>
-                    <a href="transferamount"><i class="fa fa-fw fa fa-question-circle"></i> Transfer Amount</a>
+                    <a href="fundtransfure"><i class="fa fa-fw fa fa-question-circle"></i> Transfer Amount</a>
                 </li>
                 
                 <li>

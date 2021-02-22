@@ -106,9 +106,10 @@
                         </div>
                             
 
-                        <form:form method="POST" modelAttribute="account" action="processdeleteaccount">
+                        <form:form method="POST" modelAttribute="account" action="processdeposit">
                         <form:input id="accountNumber" class="fadeIn second" placeholder="ACCOUNT NUMBER" path="accountNumber"/>
-                        <form:button id="submit" class="fadeIn fourth" name="submit">Delete</form:button>
+                        <form:input id="accountBalance" class="fadeIn second" placeholder="AMOUNT TO WITHDRAW" path="accountBalance"/>
+                        <form:button id="submit" class="fadeIn fourth" name="submit">Deposit</form:button>
                         </form:form>
                         <div id="formFooter">
                             ${message}

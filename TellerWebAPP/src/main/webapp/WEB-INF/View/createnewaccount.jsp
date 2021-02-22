@@ -67,13 +67,13 @@
                     <a href="deleteaccount"><i class="fa fa-fw fa-paper-plane-o"></i> Close Account</a>
                 </li>
                 <li>
-                    <a href="withdrawamount"><i class="fa fa-fw fa fa-question-circle"></i> Withdraw</a>
+                    <a href="withdraw"><i class="fa fa-fw fa fa-question-circle"></i> Withdraw</a>
                 </li>
                 <li>
                     <a href="depositamount"><i class="fa fa-fw fa fa-question-circle"></i> Deposit</a>
                 </li>
                 <li>
-                    <a href="transferamount"><i class="fa fa-fw fa fa-question-circle"></i> Fund Transfer</a>
+                    <a href="fundtransfure"><i class="fa fa-fw fa fa-question-circle"></i> Fund Transfer</a>
                 </li>
                 <li>
                     <a href="listallaccounts"><i class="fa fa-fw fa fa-question-circle"></i> List All Accounts</a>
